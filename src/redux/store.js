@@ -1,40 +1,16 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import initialState from './initialState';
+import tablesReducer from './tablesRedux';
 
 
-//selectors
 
+//REDUCER
+const subreducers ={
+    tables: tablesReducer
+}
 
-//action names
-const createActionName = name => `app/tables/${name}`;
-const UPDATE_TABLES = createActionName('UPDATE_TABLES');
-
-//action creators
-export const updateTables = payload => ({ type: UPDATE_TABLES, payload});
-
-export const fetchTables = () => {
-    return (dispatch) => {
-        fetch('http://localhost:3131/api/tables')
-        .then(res => res.json())
-        .then(tables => dispatch(updateTables(tables)));
-    };
-};
-
-const reducer = (state, action) => {
-
-    switch(action.type) {
-        case UPDATE_TABLES:
-            return {...state, tables: action.payload};
-        default:
-            return state;
-    }
-
-};
-
-const initialState = {
-  tables: []
-};
-
+const reducer = combineReducers(subreducers);
 const store = createStore(
   reducer,
   initialState,

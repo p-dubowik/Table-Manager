@@ -1,4 +1,4 @@
-import { fetchTables } from "./redux/store";
+import { fetchTables } from "./redux/tablesRedux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
