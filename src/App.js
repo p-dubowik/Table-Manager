@@ -1,7 +1,7 @@
 import { fetchTables } from "./redux/tablesRedux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-
+import NavBar from "./components/NavBar/NavBar";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -10,6 +10,7 @@ const App = () => {
 
   return (
     <main>
+      <NavBar />
       Placeholder
     </main>
   );
