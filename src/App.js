@@ -1,7 +1,12 @@
+import { Route, Routes } from "react-router-dom";
 import { fetchTables } from "./redux/tablesRedux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
+import Table from "./components/Table/Table";
+import Tables from "./components/Tables/Tables";
+
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -11,7 +16,11 @@ const App = () => {
   return (
     <main>
       <NavBar />
-      Placeholder
+
+      <Routes>
+        <Route path="/" element={<Tables />}/>
+        <Route path="/table/:tableid" element={<Table />}/>
+      </Routes>
     </main>
   );
 }

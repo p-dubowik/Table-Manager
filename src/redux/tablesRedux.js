@@ -1,5 +1,8 @@
 import createActionName from '../utils/createActionName';
 
+//selectors
+export const getAllTables = state => state.tables;
+export const getTableById = ({ tables }, tableId) => tables.find(table => table.id === tableId);
 
 //action names
 const UPDATE_TABLES = createActionName('UPDATE_TABLES');
