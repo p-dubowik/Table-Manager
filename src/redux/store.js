@@ -2,12 +2,29 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import initialState from './initialState';
 import tablesReducer from './tablesRedux';
+import { updateTables } from './tablesRedux';
+import uiReducer from './uiRedux';
+import { setLoading } from './uiRedux';
 
+//
+export const fetchData = () => {
+    return (dispatch) => {
+      dispatch(setLoading(true))
 
+        fetch('http://localhost:3131/api/tables')
+        .then(res => res.json())
+        .then(tables => {
+          dispatch(updateTables(tables));
+          dispatch(setLoading(false));
+        })
+        .catch(()=> dispatch(setLoading(false)))
+    };
+};
 
 //REDUCER
 const subreducers ={
-    tables: tablesReducer
+    tables: tablesReducer,
+    ui: uiReducer
 }
 
 const reducer = combineReducers(subreducers);

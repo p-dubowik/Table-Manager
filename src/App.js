@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { fetchTables } from "./redux/tablesRedux";
+import { fetchData } from "./redux/store";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
@@ -11,7 +11,7 @@ const App = () => {
   const dispatch = useDispatch();
 
 
-  useEffect(() => dispatch(fetchTables()), [dispatch]);
+  useEffect(() => dispatch(fetchData()), [dispatch]);
 
   return (
     <main>

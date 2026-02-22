@@ -1,11 +1,22 @@
 import { useSelector } from "react-redux";
 import { getAllTables } from "../../redux/tablesRedux";
 import { Link } from "react-router-dom";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Button, Spinner } from "react-bootstrap";
+import { getLoading } from "../../redux/uiRedux";
 
 const Tables = () => {
 
     const tables = useSelector(getAllTables);
+    const loading = useSelector(getLoading);
+
+    if(loading){
+        return (
+            <div className="d-flex justify-content-center align-content-center my-5">
+                <h1 className="mx-4">Loading...</h1>
+                <Spinner />
+            </div>
+        )
+    }
 
     return(
         <section>

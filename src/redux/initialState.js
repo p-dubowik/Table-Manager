@@ -1,6 +1,6 @@
 const initialState = {
   tables: [],
-  loading: true
+  ui: { loading: true }
 };
 
 export default initialState;
