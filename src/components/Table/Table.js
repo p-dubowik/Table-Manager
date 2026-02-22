@@ -12,12 +12,11 @@ const Table = () => {
     const tableData = useSelector(state => getTableById(state, tableId));
 
 
-    if(!tableData) return <Navigate to="/" />
+    if (!tableData) return <Navigate to="/" />;
+
 
     return(
-        <section>
-            <TableUpdateForm tableData={tableData}></TableUpdateForm>
-        </section>
+            <TableUpdateForm tableData={tableData} tableId={tableId}/>
     );
 };
 
