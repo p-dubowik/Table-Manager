@@ -19,7 +19,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Tables />}/>
-        <Route path="/table/:tableid" element={<Table />}/>
+        <Route path="/table/:tableId" element={<Table />}/>
       </Routes>
     </main>
   );
