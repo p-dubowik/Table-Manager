@@ -1,6 +1,9 @@
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 import updateFormData from "../../utils/updateFormData";
 import { useState } from "react";
+import BillForm from "../BillForm";
+import PeopleForm from "../PeopleForm";
+import StatusForm from "../StatusForm";
 
 
 
@@ -60,72 +63,12 @@ const TableUpdateForm = props => {
     return (
         <Container>
             <h1 className="ms-2 my-4">Table {tableData.id}</h1>
-
             <Form onSubmit={handleUpdate}>
 
-                <Row className="align-items-center">
-                    <Col xs="1">
-                        <Form.Label className="fw-bold">Status:</Form.Label>
-                    </Col>
-                    <Col xs="2" >
-                        <Form.Select 
-                        name="status"
-                        value={formData.status}
-                        onChange={handleChange}
-                        >
-                            <option>Busy</option>
-                            <option>Reserved</option>
-                            <option>Cleaning</option>
-                            <option>Free</option>
-                        </Form.Select>
-                    </Col>
-                </Row>
-
-                <Row className="align-items-center my-5">
-                    <Col xs="1">
-                        <Form.Label className="fw-bold">People:</Form.Label>
-                    </Col>
-                    <Col xs="1">
-                        <Form.Control 
-                        name="people"
-                        value={formData.people}
-                        type="number"
-                        min={0}
-                        max={10}
-                        onChange={handleChange}
-                        />
-                    </Col>
-                    <Col xs="auto">/</Col>
-                    <Col xs="1">
-                        <Form.Control 
-                        name="maxPeople"
-                        value={formData.maxPeople}
-                        type="number"
-                        min={0} 
-                        max={10}
-                        onChange={handleChange}
-                        />
-                    </Col>
-                </Row>
-
-            
+                <StatusForm onChange={handleChange} dataStatus={formData.status} />
+                <PeopleForm onChange={handleChange} dataPeople={formData.people} dataMaxPeople={formData.maxPeople} />            
                 {formData.status === "Busy" && (
-                    <Row className="align-items-center">
-                        <Col xs="1">
-                            <Form.Label className="fw-bold">Bill:</Form.Label>
-                        </Col>
-                        <Col xs="2">
-                            <InputGroup>
-                                <InputGroup.Text>$</InputGroup.Text>
-                                <Form.Control 
-                                name="bill"
-                                value={formData.bill}
-                                type="number"
-                                onChange={handleChange}
-                                />
-                            </InputGroup>
-                        </Col>
-                    </Row>
+                        <BillForm dataBill={formData.bill} onChange={handleChange} />
                     )}
 
                 <Button type="submit" className="my-4" disabled={saving}>

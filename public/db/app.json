@@ -4,9 +4,9 @@
       "id": 1,
       "name": "Table 1",
       "status": "Busy",
-      "people": "5",
+      "people": 0,
       "maxPeople": "5",
-      "bill": "6",
+      "bill": "3",
       "": "5"
     },
     {
