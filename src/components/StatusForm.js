@@ -1,4 +1,5 @@
 import { Row, Col, Form } from "react-bootstrap"
+import PropTypes from 'prop-types';
 
 const StatusForm = props => {
     return (
@@ -21,5 +22,10 @@ const StatusForm = props => {
         </Row>
     );
 };
+
+StatusForm.propTypes = {
+    dataStatus: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
+}
 
 export default StatusForm;

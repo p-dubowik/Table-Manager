@@ -1,4 +1,5 @@
 import { Row, Col, InputGroup, Form } from "react-bootstrap"
+import PropTypes from "prop-types";
 
 const BillForm = props => {
     return (
@@ -20,5 +21,11 @@ const BillForm = props => {
         </Row>
     );
 };
+
+
+BillForm.propTypes = {
+    dataBill: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired
+}
 
 export default BillForm;

@@ -1,9 +1,10 @@
-import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import updateFormData from "../../utils/updateFormData";
 import { useState } from "react";
 import BillForm from "../BillForm";
 import PeopleForm from "../PeopleForm";
 import StatusForm from "../StatusForm";
+import PropTypes from 'prop-types';
 
 
 
@@ -56,7 +57,6 @@ const TableUpdateForm = props => {
         const updatedData = updateFormData(formData, name, value);
         setFormData(updatedData);
     };
-    
 
 
 
@@ -79,6 +79,22 @@ const TableUpdateForm = props => {
         </Container>
     );
 
+};
+
+
+
+
+TableUpdateForm.propTypes = {
+    tableData: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        status: PropTypes.string.isRequired,
+        people: PropTypes.number.isRequired,
+        maxPeople: PropTypes.number.isRequired,
+        bill: PropTypes.number.isRequired
+    }).isRequired,
+
+
+    tableId: PropTypes.string.isRequired
 };
 
 export default TableUpdateForm;

@@ -1,4 +1,5 @@
 import { Row, Col, Form } from "react-bootstrap"
+import PropTypes from "prop-types";
 
 
 const PeopleForm = props => {
@@ -31,5 +32,11 @@ const PeopleForm = props => {
         </Row>
     );
 };
+
+PeopleForm.propTypes = {
+    dataPeople: PropTypes.number.isRequired,
+    dataMaxPeople: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired
+}
 
 export default PeopleForm;
