@@ -1,4 +1,5 @@
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
+import updateFormData from "../../utils/updateFormData";
 import { useState } from "react";
 
 
@@ -12,11 +13,9 @@ const TableUpdateForm = props => {
         status: tableData.status,
         people: tableData.people,
         maxPeople: tableData.maxPeople,
-        bill: 0
+        bill: tableData.bill
     });
     const [saving, setSaving] = useState(false);
-
-
 
     const handleUpdate = e => {
         e.preventDefault();
@@ -47,29 +46,12 @@ const TableUpdateForm = props => {
 
     };
 
+
     const handleChange = e => {
         const { name, value } = e.target;
 
-        const updated = {
-            ...formData,
-            [name]: value
-        };
-
-        if(name === "status"){
-            if(value !== "Busy"){
-                updated.people = 0;
-                updated.bill = 0;
-            };
-        };
-
-        if(name === "people"){
-            if(Number(updated.people) > Number(updated.maxPeople)){
-                updated.maxPeople = updated.people;
-            }
-        }
-
-        setFormData(updated);
-        console.log(updated);
+        const updatedData = updateFormData(formData, name, value);
+        setFormData(updatedData);
     };
     
 
