@@ -11,6 +11,7 @@ const TableUpdateForm = props => {
     const [formData, setFormData] = useState({
         status: tableData.status,
         people: tableData.people,
+        maxPeople: tableData.maxPeople,
         bill: 0
     });
     const [saving, setSaving] = useState(false);
@@ -19,7 +20,6 @@ const TableUpdateForm = props => {
 
     const handleUpdate = e => {
         e.preventDefault();
-        e.stopPropagation();
         setSaving(true);
     
         const url = `http://localhost:3131/api/tables/${tableId}`;
@@ -62,6 +62,12 @@ const TableUpdateForm = props => {
             };
         };
 
+        if(name === "people"){
+            if(Number(updated.people) > Number(updated.maxPeople)){
+                updated.maxPeople = updated.people;
+            }
+        }
+
         setFormData(updated);
         console.log(updated);
     };
@@ -85,7 +91,7 @@ const TableUpdateForm = props => {
                         value={formData.status}
                         onChange={handleChange}
                         >
-                            <option >Busy</option>
+                            <option>Busy</option>
                             <option>Reserved</option>
                             <option>Cleaning</option>
                             <option>Free</option>
@@ -103,13 +109,20 @@ const TableUpdateForm = props => {
                         value={formData.people}
                         type="number"
                         min={0}
-                        max={tableData.maxPeople}
+                        max={10}
                         onChange={handleChange}
                         />
                     </Col>
                     <Col xs="auto">/</Col>
                     <Col xs="1">
-                        <Form.Control placeholder={tableData.maxPeople} disabled />
+                        <Form.Control 
+                        name="maxPeople"
+                        value={formData.maxPeople}
+                        type="number"
+                        min={0} 
+                        max={10}
+                        onChange={handleChange}
+                        />
                     </Col>
                 </Row>
 
