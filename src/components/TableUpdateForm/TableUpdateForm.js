@@ -25,7 +25,8 @@ const TableUpdateForm = props => {
         e.preventDefault();
         setSaving(true);
     
-        const url = `/api/tables/${tableId}`;
+        const API = "https://table-manager-api-8e2z.onrender.com/api/tables"
+        const url = `${API}/${tableId}`;
         const options = {
             method: 'PATCH',
 

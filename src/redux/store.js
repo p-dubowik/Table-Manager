@@ -8,10 +8,12 @@ import { setLoading } from './uiRedux';
 
 //
 export const fetchData = () => {
+
+    const API = "https://table-manager-api-8e2z.onrender.com/api/tables"
     return (dispatch) => {
       dispatch(setLoading(true))
 
-        fetch('/api/tables')
+        fetch(API)
         .then(res => res.json())
         .then(tables => {
           dispatch(updateTables(tables));
