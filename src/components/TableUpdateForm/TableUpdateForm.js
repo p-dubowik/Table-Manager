@@ -5,10 +5,16 @@ import BillForm from "../BillForm";
 import PeopleForm from "../PeopleForm";
 import StatusForm from "../StatusForm";
 import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchData } from "../../redux/store";
 
 
 
 const TableUpdateForm = props => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const tableData = props.tableData;
     const tableId = props.tableId;
     
@@ -43,11 +49,14 @@ const TableUpdateForm = props => {
             if(!res.ok) throw new Error("failed")
                 return res.json()
         })
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            dispatch(fetchData());
+            navigate("/");
+        })
         .finally(()=> {
             setSaving(false);
         })
-
 
     };
 
