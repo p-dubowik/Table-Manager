@@ -11,7 +11,7 @@ export const fetchData = () => {
     return (dispatch) => {
       dispatch(setLoading(true))
 
-        fetch('http://localhost:3131/api/tables')
+        fetch('/api/tables')
         .then(res => res.json())
         .then(tables => {
           dispatch(updateTables(tables));

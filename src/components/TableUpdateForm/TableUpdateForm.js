@@ -25,7 +25,7 @@ const TableUpdateForm = props => {
         e.preventDefault();
         setSaving(true);
     
-        const url = `http://localhost:3131/api/tables/${tableId}`;
+        const url = `/api/tables/${tableId}`;
         const options = {
             method: 'PATCH',
 
